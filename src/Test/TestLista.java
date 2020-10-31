@@ -14,6 +14,7 @@ import java.util.Comparator;
 public class TestLista {
     //private ABB arbol = new ABB();
     private OrderSet<Integer> set;
+    private OrderSetWithoutDuplicates<Integer> uniqueset;
     public void iniciar(){
         Comparator<Integer> comparador = new Comparator<Integer>()
         {
@@ -27,12 +28,24 @@ public class TestLista {
             }
         };
         set  = new OrderSet<>(comparador);
-        llenarLista();
-        System.out.println(set.toString());
+       uniqueset  = new OrderSetWithoutDuplicates<>(comparador);
+        llenarLista(uniqueset);
+        System.out.println(uniqueset.toString());
     }
-    private void llenarLista(){
+    private void llenarLista(OrderSet<Integer> set){
                 
         set.add(10);
+        set.add(10);
+        set.add(10);
+        set.add(10);
+        set.add(10);
+        set.add(10);
+        set.add(10);
+        set.add(10);
+
+        set.add(10);
+        set.add(10);
+
         set.add(11);
         set.add(13);
         set.add(0);
@@ -45,7 +58,7 @@ public class TestLista {
         set.add(5);
         set.add(17);
         set.add(12);
-        set.add(16);
+        set.add(10);
     }
     
 

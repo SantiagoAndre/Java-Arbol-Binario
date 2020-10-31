@@ -5,7 +5,7 @@ import java.util.*;
 
 public class OrderSet<E> implements SortedSet<E>
 {
-    private final SortedSet<IndexedEntry<E>> bs;
+    protected final SortedSet<IndexedEntry<E>> bs;
 
     public OrderSet(final E[] e)
     {
@@ -303,51 +303,6 @@ public class OrderSet<E> implements SortedSet<E>
         }
         return -1;
     }
-
-    private class IndexedEntry<E> implements Comparable<IndexedEntry<E>>
-    {
-        private final Integer index;
-        private final E value;
-        private final String strrep;
-
-        private IndexedEntry(final int index, final E value)
-        {
-            this.index = index;
-            this.value = value;
-            this.strrep = String.format("%d:%s", this.index, this.value);
-        }
-
-        @Override
-        public int compareTo(final IndexedEntry<E> o)
-        {
-            return this.index.compareTo(o.index);
-        }
-
-        /**
-         * hashCode delegates to the contained .value hashCode implemenation
-         * @return
-         */
-        @Override
-        public int hashCode()
-        {
-            return this.value.hashCode();
-        }
-
-        /**
-         * This returns <code>true</code> if the values are <code>equal</code>, it ignores the index
-         * @param obj
-         * @return
-         */
-        @Override
-        public boolean equals(final Object obj)
-        {
-            return this.value.equals(obj);
-        }
-
-        @Override
-        public String toString()
-        {
-            return this.strrep;
-        }
-    }
 }
+
+
