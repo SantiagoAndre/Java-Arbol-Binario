@@ -78,6 +78,30 @@ public class Nodo {
         return toString(0);
     }
     private String toString(int profundidad){
+         /*
+         El metodo to String recibe un parametro que es la profundidad.
+         Este repite tabs {profundidad} veces antes del nombre
+         Por ejemplo el nodo de la raix  tiene profundidad 0 entonces no coloca espacios antes, quedando asi"
+         "E"
+         Un elemento del nivel uno tiene profundidad 1 entonces habria un espacio a su ixquierda quedando asi:
+         "  E"
+         Es la forma mas facil de imprimir un arbol n-ario, un ejemplo de recorrer este metodo es el siguiente:         
+                A
+                E
+                        B
+                        F
+                            M
+                            N
+                        H
+                    L
+                    T
+                        W
+                            Y
+                            Q
+         B y F son hijos de E
+         M y N son hijos de F
+         */
+    
         String space = "\t";//tab
         String cadena = new String(new char[profundidad]).replace("\0", space)+ info().toString() + "\n";
 
@@ -85,6 +109,17 @@ public class Nodo {
             cadena = cadena + hijo.toString(profundidad+1);
         }
         return cadena;
+    }
+    public  void obtenerElementosDeUnNivel(int nivel, int nivelActual, ArrayList<Comparable> datos){
+        if(nivelActual == nivel){// Estamos en el nvl buscado, se agrega el elemento
+            datos.add(this.info());
+            return;// no hay necesidad de revisar los siguientes niveles
+        }
+        //se pasa al siguiente nivel(los hjos ) y se ejecura el metodo recursivamente
+        for(Nodo hijo: hijos){
+            hijo.obtenerElementosDeUnNivel(nivel,nivelActual+1,datos);
+        }
+
     }
 
     /*

@@ -31,6 +31,15 @@ public class TestNario {
         }catch(Exception e){
             e.printStackTrace();
         }
+        //1. Punto uno, todos los elementos de un nivel
+        int nivel = 0;
+        ArrayList elementos= arbol.obtenerElementosDeUnNivel(nivel);
+        while(!elementos.isEmpty()){//Mientras no sea vacio el nivel
+            System.out.println("Todos los elementos del nivel " + String.valueOf(nivel)+ " son: "+ elementos.toString());
+            nivel++;
+            elementos= arbol.obtenerElementosDeUnNivel(nivel);
+        }
+
         
     }
     private void llenarArbol(ArbolNario arbol){

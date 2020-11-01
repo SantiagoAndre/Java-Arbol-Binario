@@ -1,6 +1,6 @@
 
 package ArbolNario;
-
+import java.util.ArrayList;
 
 public class ArbolNario{
    Nodo raiz;
@@ -18,6 +18,13 @@ public class ArbolNario{
             nodoPadre.agregarHijo(hijo);
            return;
        }
+   }
+   public ArrayList<Comparable> obtenerElementosDeUnNivel(int nivel){
+       ArrayList<Comparable> datos = new ArrayList<>();
+       if(raiz != null){
+           raiz.obtenerElementosDeUnNivel(nivel,0,datos);
+       }
+       return datos;
    }
    @Override
    public String toString(){
