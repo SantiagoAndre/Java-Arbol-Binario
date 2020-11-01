@@ -157,6 +157,45 @@ public class Nodo {
         }
         return sePodo;
     }
+
+    public void ramas( int nrama, ArrayList<ArrayList<Comparable>> ramas){
+          //1 tengo el numero de la rama en donde se agrego mi padre
+        ArrayList<Comparable> rama;
+        if(ramas.isEmpty()){
+            rama = new ArrayList<>();
+            nrama = 0;
+            ramas.add(rama);
+        }else{
+            rama = ramas.get(nrama);
+        }
+        //en esa rama agrego el elemento de este nodo
+        rama.add(info());
+
+        //creo las nuevas ramas
+        int nnuevasramas = hijos.size()-1;
+        for(int i = 0 ;i<nnuevasramas;i++){
+            ramas.add(new ArrayList<Comparable>(rama));
+        }
+
+        //recorro los hijos
+        boolean  primero = true;
+        int pos = ramas.size()-nnuevasramas;
+        for(Nodo hijo: hijos){
+        //les paso el numero de la rama
+            //al primer hijo sera la misma del padre,
+            //a los siguientes se les enviara una nueva rama, se copia la rrama del padre y se coloca de ultimo
+            if(primero){//primer hijo
+                hijo.ramas(nrama,ramas);
+                primero = false;
+            }else{
+                //ramas.add(new ArrayList<Comparable>(rama));
+                hijo.ramas(pos,ramas);
+                pos++;
+            }
+            
+        }
+        
+    }
     /*
     A
        E

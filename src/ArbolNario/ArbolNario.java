@@ -45,4 +45,12 @@ public class ArbolNario{
             return raiz.podarArbol(nivel,0);
         return false;
    }
+   public ArrayList<ArrayList<Comparable>> ramas(){
+       if(raiz == null)
+           return null;
+       ArrayList<ArrayList<Comparable>> ramas = new ArrayList<ArrayList<Comparable>>();
+       raiz.ramas(0, ramas);
+       return ramas;       
+   }
+
 }

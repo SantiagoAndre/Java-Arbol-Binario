@@ -33,8 +33,9 @@ public class TestNario {
         }
         obtenerElementosDeUnNivel(arbol);
         recorridoNiveles(arbol);
-        podar(arbol);
         
+        ramas(arbol);
+        podar(arbol);
     }
     private void llenarArbol(ArbolNario arbol){
            
@@ -108,7 +109,7 @@ public class TestNario {
         ArrayList<ArrayList<Comparable>> datos;
         datos = arbol.recorridoNiveles();
     
-        imprimirListaDoble(datos);
+        imprimirListaDoble(datos," ");
         System.out.println("\n-----------------------------------------------------");
     }
     private void podar(ArbolNario arbol){
@@ -132,7 +133,16 @@ public class TestNario {
             System.out.println("-----------------------------------------------------");
        
     }
-
+    private void ramas(ArbolNario arbol){
+         
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Ejecucion del punto 5, ramas");
+        ArrayList<ArrayList<Comparable>> datos;
+        datos = arbol.ramas();
+    
+        imprimirListaDoble(datos, "   Bitch\n ");
+        System.out.println("\n-----------------------------------------------------");
+    }
 
 //------------ UTLIIDADES ------------
     
@@ -165,11 +175,11 @@ public class TestNario {
             System.out.print(lista.get(i )+ " ");
         }    
     }
-     private void imprimirListaDoble(ArrayList<ArrayList<Comparable>> listadoble){
+     private void imprimirListaDoble(ArrayList<ArrayList<Comparable>> listadoble,String end){
         int size = listadoble.size();
         for(int i =0; i<size;i++){
             imprimirLista(listadoble.get(i));
-            System.out.print(" ");
+            System.out.print(end);
         }
     }
 
