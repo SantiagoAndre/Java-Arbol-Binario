@@ -121,7 +121,25 @@ public class Nodo {
         }
 
     }
-
+    public void recorridoNiveles(int nivel , ArrayList<ArrayList<Comparable>> datos){
+        
+         ArrayList<Comparable> datosNivel;
+        try{
+            datosNivel = datos.get(nivel);
+        }catch(java.lang.IndexOutOfBoundsException e){
+            datosNivel = new ArrayList<>();
+        }
+            datosNivel.add(info());
+        try{
+            datos.set(nivel, datosNivel);
+        }catch(java.lang.IndexOutOfBoundsException e){
+            datos.add(datosNivel);
+        }
+        //se pasa al siguiente nivel(los hjos ) y se ejecura el metodo recursivamente
+        for(Nodo hijo: hijos){
+            hijo.recorridoNiveles(nivel+1,datos);
+        }
+    }
     /*
     A
        E
@@ -178,23 +196,6 @@ public class Nodo {
         posorden(datos,nodo.getDer());
         datos.add(nodo.info());
     }
-    public void RecorridoNiveles(int nivel ,Nodo arbol, ArrayList<ArrayList<Comparable>> datos){
-        if(arbol == null)
-            return;
-         ArrayList<Comparable> datosNivel;
-        try{
-            datosNivel = datos.get(nivel);
-        }catch(java.lang.IndexOutOfBoundsException e){
-            datosNivel = new ArrayList<>();
-        }
-            datosNivel.add(arbol.info());
-        try{
-            datos.set(nivel, datosNivel);
-        }catch(java.lang.IndexOutOfBoundsException e){
-            datos.add(datosNivel);
-        }
-        RecorridoNiveles(nivel+1,arbol.getIzq(),datos);
-        RecorridoNiveles(nivel+1,arbol.getDer(),datos);
-    }
+
 */
 }

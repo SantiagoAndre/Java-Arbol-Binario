@@ -27,19 +27,12 @@ public class TestNario {
             
             String nombreArchivo  = "../files/nario.txt";
             cargarDeArchivo(nombreArchivo,arbol);
-            System.out.println(arbol.toString());
+            
         }catch(Exception e){
             e.printStackTrace();
         }
-        //1. Punto uno, todos los elementos de un nivel
-        int nivel = 0;
-        ArrayList elementos= arbol.obtenerElementosDeUnNivel(nivel);
-        while(!elementos.isEmpty()){//Mientras no sea vacio el nivel
-            System.out.println("Todos los elementos del nivel " + String.valueOf(nivel)+ " son: "+ elementos.toString());
-            nivel++;
-            elementos= arbol.obtenerElementosDeUnNivel(nivel);
-        }
-
+        obtenerElementosDeUnNivel(arbol);
+        recorridoNiveles(arbol);
         
     }
     private void llenarArbol(ArbolNario arbol){
@@ -60,29 +53,10 @@ public class TestNario {
 
 
     }
-    private Comparable prepararElemento(String str) throws Exception{
-        Comparable elemento ;
-        if(tipoArbol== 1){//Numeros
-            try{
-                elemento = Integer.parseInt(str);
-            }catch(Exception e){
-                //si no se puede hacer el parseo se lanxa una excepcion
-               elemento = null;
-            }
-        }else{ // Caracter, debe tener logitud 1
-            if(str.length() != 1)
-                elemento = null;
-            else
-            // debe ser un caracter, un caracter debe tener logitud 1
-                elemento = str;
-        }
-        if(elemento == null){//es null solo si no es valido
-            throw new  Exception("El elemento " + str + " No es un elemento valido");
-        }
-        return elemento;
-    }
     private void cargarDeArchivo(String nombreArchivo,ArbolNario arbol)throws Exception{
-        
+        /*Punto 1, cargar el arbol de un archivo*/
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Ejecucion del punto 1, cargar elementos de un archivo");
         Archivo a = new Archivo();
         a.abrirArchivo(nombreArchivo);
         String linea  = a.LeerLinea();
@@ -107,8 +81,73 @@ public class TestNario {
             arbol.insertar(padre,hijo);
             linea  = a.LeerLinea();
         }
-        
+        System.out.println("Fin del metodo, resultado de la ejecucion:");
+        System.out.println(arbol.toString());
+        System.out.println("-----------------------------------------------------");
     }
     
+    private void obtenerElementosDeUnNivel(ArbolNario arbol){
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Ejecucion del punto 2, elementos de un nivel, por cuestiones de prueba se ejecuta el metodo en cada nivel empleando in for");
+         //2. Punto dos, todos los elementos de un nivel
+        int nivel = 0;
+        ArrayList elementos= arbol.obtenerElementosDeUnNivel(nivel);
+        while(!elementos.isEmpty()){//Mientras no sea vacio el nivel
+            System.out.println("Todos los elementos del nivel " + String.valueOf(nivel)+ " son: "+ elementos.toString());
+            nivel++;
+            elementos= arbol.obtenerElementosDeUnNivel(nivel);
+        }
+        System.out.println("-----------------------------------------------------");
+    }
+    private void recorridoNiveles(ArbolNario arbol){
+         
+        //2. PUNTO DOS RECORRIDO NIVELES
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Ejecucion del punto 3, recorrdo por niveles");
+        ArrayList<ArrayList<Comparable>> datos;
+        datos = arbol.recorridoNiveles();
+    
+        imprimirListaDoble(datos);
+        System.out.println("-----------------------------------------------------");
+    }
+
+//------------ UTLIIDADES ------------
+    
+    private Comparable prepararElemento(String str) throws Exception{
+        Comparable elemento ;
+        if(tipoArbol== 1){//Numeros
+            try{
+                elemento = Integer.parseInt(str);
+            }catch(Exception e){
+                //si no se puede hacer el parseo se lanxa una excepcion
+               elemento = null;
+            }
+        }else{ // Caracter, debe tener logitud 1
+            if(str.length() != 1)
+                elemento = null;
+            else
+            // debe ser un caracter, un caracter debe tener logitud 1
+                elemento = str;
+        }
+        if(elemento == null){//es null solo si no es valido
+            throw new  Exception("El elemento " + str + " No es un elemento valido");
+        }
+        return elemento;
+    }
+
+
+    private void imprimirLista(ArrayList<Comparable> lista){
+        int size = lista.size();
+        for(int i =0; i<size;i++){
+            System.out.print(lista.get(i )+ " ");
+        }    
+    }
+     private void imprimirListaDoble(ArrayList<ArrayList<Comparable>> listadoble){
+        int size = listadoble.size();
+        for(int i =0; i<size;i++){
+            imprimirLista(listadoble.get(i));
+            System.out.print(" ");
+        }
+    }
 
 }

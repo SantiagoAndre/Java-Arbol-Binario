@@ -33,4 +33,11 @@ public class ArbolNario{
        }
        return raiz.toString();
    }
+   public ArrayList<ArrayList<Comparable>> recorridoNiveles(){
+       if(raiz == null)
+           return null;
+       ArrayList<ArrayList<Comparable>> datos = new ArrayList<ArrayList<Comparable>>();
+       raiz.recorridoNiveles(0, datos);
+       return datos;       
+   }
 }
