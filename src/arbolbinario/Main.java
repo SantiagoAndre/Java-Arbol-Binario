@@ -18,7 +18,8 @@ public class Main {
     public static void main(String[] args) {
         //TestArchivo test = new TestArchivo();
         //TestABB test = new TestABB();
-        TestLista test = new TestLista();
+        //TestLista test = new TestLista();
+        TestNario test = new TestNario();
         test.iniciar();
     }
 }

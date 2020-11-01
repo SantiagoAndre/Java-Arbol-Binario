@@ -29,6 +29,7 @@ public class TestLista {
         };
         set  = new OrderSet<>(comparador);
        uniqueset  = new OrderSetWithoutDuplicates<>(comparador);
+
         llenarLista(uniqueset);
         System.out.println(uniqueset.toString());
     }

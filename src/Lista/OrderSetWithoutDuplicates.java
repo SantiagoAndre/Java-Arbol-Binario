@@ -35,7 +35,6 @@ public class OrderSetWithoutDuplicates<E> extends OrderSet<E>
     @Override
     public boolean add(final E e)
     {
-        System.out.println("HOLA");
         if(!this.contains(e)){
             IndexedEntry<E> element = new IndexedEntry<>(this.bs.size(), e);
             return this.bs.add(element);

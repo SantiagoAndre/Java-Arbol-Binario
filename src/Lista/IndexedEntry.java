@@ -10,7 +10,7 @@ package Lista;
         {
             this.index = index;
             this.value = value;
-            this.strrep = String.format("%s",  this.value);
+            this.strrep = String.format("%d:%s", this.index, this.value);
         }
 
         @Override

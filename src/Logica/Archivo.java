@@ -28,7 +28,7 @@ public class Archivo {
                 return true;
             }
             else{
-                System.out.println("El archivo esta vacio o no existe. Verifique su contenido.");
+                System.out.println(nombreArchivo+": El archivo esta vacio o no existe. Verifique su contenido.");
                 return false;}
         } catch (IOException e) {
             // TODO Auto-generated catch block

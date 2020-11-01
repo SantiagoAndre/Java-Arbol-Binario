@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+
+  salus-web-app:
+    container_name: java-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/var/www/java'
+      - './files/:/var/www/java/files'
+   
