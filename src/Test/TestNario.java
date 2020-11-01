@@ -33,6 +33,7 @@ public class TestNario {
         }
         obtenerElementosDeUnNivel(arbol);
         recorridoNiveles(arbol);
+        podar(arbol);
         
     }
     private void llenarArbol(ArbolNario arbol){
@@ -108,8 +109,30 @@ public class TestNario {
         datos = arbol.recorridoNiveles();
     
         imprimirListaDoble(datos);
-        System.out.println("-----------------------------------------------------");
+        System.out.println("\n-----------------------------------------------------");
     }
+    private void podar(ArbolNario arbol){
+         
+        //2. PUNTO 4, Podar arbol
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Ejecucion del punto 4, podar arbol");
+        System.out.println("Este metodo modifica el arbol por lo tanto se mostrara antes y despues");
+        System.out.println("       --------------------- Antes ------------      ");
+        System.out.println(arbol.toString());
+        int nivel = 3;
+        if(nivel == 0 ){
+            System.out.println("No se puede realizar la acción ya que se eliminaría el árbol");
+        }else if(arbol.podarArbol(nivel)){// Se podo el arbol        
+            
+        }else{
+            System.out.println("Este nivel no existe en el árbol.");
+        }
+        System.out.println("       ----------------- -- Despues ------------      ");
+            System.out.println(arbol.toString());
+            System.out.println("-----------------------------------------------------");
+       
+    }
+
 
 //------------ UTLIIDADES ------------
     

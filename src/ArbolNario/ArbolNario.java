@@ -40,4 +40,9 @@ public class ArbolNario{
        raiz.recorridoNiveles(0, datos);
        return datos;       
    }
+   public boolean podarArbol(int nivel){
+       if(raiz!=null)
+            return raiz.podarArbol(nivel,0);
+        return false;
+   }
 }

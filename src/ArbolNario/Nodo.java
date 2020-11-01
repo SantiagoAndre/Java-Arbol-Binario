@@ -140,6 +140,23 @@ public class Nodo {
             hijo.recorridoNiveles(nivel+1,datos);
         }
     }
+    public boolean podarArbol(int nivel, int nivelActual){
+        
+          if((nivelActual+1) == nivel){// Estamos en el nvl anterior al buscado, se eliminan los hijos vaciando la lista y listo
+            hijos.clear();//eliminar hijos
+            
+            return true;// no hay necesidad de revisar los siguientes niveles
+        }
+        //se pasa al siguiente nivel(los hjos ) y se ejecura el metodo recursivamente
+        boolean sePodo = false;
+        for(Nodo hijo: hijos){
+            //se aplica el operador or, se Podo sera true si se elimino un nivel en alguno de sus hijos
+          
+            sePodo = hijo.podarArbol(nivel,nivelActual+1) || sePodo;
+
+        }
+        return sePodo;
+    }
     /*
     A
        E
