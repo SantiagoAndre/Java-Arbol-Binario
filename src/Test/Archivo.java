@@ -1,4 +1,4 @@
-package Logica;
+package Test;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
@@ -31,6 +31,7 @@ public class Archivo {
                 System.out.println(nombreArchivo+": El archivo esta vacio o no existe. Verifique su contenido.");
                 return false;}
         } catch (IOException e) {
+            System.out.println(nombreArchivo+": El archivo esta vacio o no existe. Verifique su contenido.");
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

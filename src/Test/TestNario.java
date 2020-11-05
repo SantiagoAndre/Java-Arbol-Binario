@@ -4,57 +4,40 @@
  * and open the template in the editor.
  */
 package Test;
-//import java.util.Scanner; 
-
+import java.util.Scanner; 
 import Lista.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import ArbolNario.ArbolNario;
 
-import Logica.Archivo;
-/**
- *
- * @author root
- */
+
 public class TestNario {
-    //private ABB arbol = new ABB();
-    //Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
     private ArbolNario arbol;
     private int tipoArbol ;
     public void iniciar(){
         arbol = new ArbolNario();
         try{
             
-            String nombreArchivo  = "../files/nario.txt";
+            String nombreArchivo  = "files/nario.txt";
             cargarDeArchivo(nombreArchivo,arbol);
             
         }catch(Exception e){
             e.printStackTrace();
         }
         obtenerElementosDeUnNivel(arbol);
+        System.out.println("Presione una tecla para contiuar al proximo punto ....");
+        input.nextLine();
         recorridoNiveles(arbol);
-        
+        System.out.println("Presione una tecla para contiuar al proximo punto ....");        
+        input.nextLine();
         ramas(arbol);
+        System.out.println("Presione una tecla para contiuar al proximo punto ....");
+        input.nextLine();
         podar(arbol);
-    }
-    private void llenarArbol(ArbolNario arbol){
-           
-                
-        arbol.insertar('A');
-        arbol.insertar('A','E');
-        arbol.insertar('A','L');
-        arbol.insertar('A','T');
-        arbol.insertar('E','B');
-        arbol.insertar('E','F');
-        arbol.insertar('E','H');
         
-        arbol.insertar('F','N');arbol.insertar('F','M');
-        arbol.insertar('T','W');
-        arbol.insertar('W','Y');
-        arbol.insertar('W','X');
-
-
     }
+   
     private void cargarDeArchivo(String nombreArchivo,ArbolNario arbol)throws Exception{
         /*Punto 1, cargar el arbol de un archivo*/
         System.out.println("-----------------------------------------------------");
@@ -90,15 +73,19 @@ public class TestNario {
     
     private void obtenerElementosDeUnNivel(ArbolNario arbol){
         System.out.println("-----------------------------------------------------");
-        System.out.println("Ejecucion del punto 2, elementos de un nivel, por cuestiones de prueba se ejecuta el metodo en cada nivel empleando in for");
-         //2. Punto dos, todos los elementos de un nivel
-        int nivel = 0;
+        System.out.println("Ejecucion del punto 2, elementos de un nivel.");
+        System.out.print("Ingrese el nivel, el primer nivel es el nivel 0:");
+        int nivel = input.nextInt();
+         
         ArrayList elementos= arbol.obtenerElementosDeUnNivel(nivel);
-        while(!elementos.isEmpty()){//Mientras no sea vacio el nivel
-            System.out.println("Todos los elementos del nivel " + String.valueOf(nivel)+ " son: "+ elementos.toString());
-            nivel++;
-            elementos= arbol.obtenerElementosDeUnNivel(nivel);
+        if(elementos == null || elementos.isEmpty()){
+            System.out.println("No existe este nivel del árbol");
+        }else  if(nivel == 0 ){
+            System.out.println("Es el nivel de la raíz del árbol y el nodo es " + elementos.get(0));
+        }else{
+           System.out.println( "La cantidad de nodos es" + elementos.size()+" y los nodos son:" + elementos.toString());
         }
+
         System.out.println("-----------------------------------------------------");
     }
     private void recorridoNiveles(ArbolNario arbol){
@@ -109,7 +96,7 @@ public class TestNario {
         ArrayList<ArrayList<Comparable>> datos;
         datos = arbol.recorridoNiveles();
     
-        imprimirListaDoble(datos," ");
+        imprimirListaDoble(datos,false," ");
         System.out.println("\n-----------------------------------------------------");
     }
     private void podar(ArbolNario arbol){
@@ -120,7 +107,8 @@ public class TestNario {
         System.out.println("Este metodo modifica el arbol por lo tanto se mostrara antes y despues");
         System.out.println("       --------------------- Antes ------------      ");
         System.out.println(arbol.toString());
-        int nivel = 3;
+        System.out.println("Ingrese el nivel que desea podar: ");
+        int nivel = input.nextInt();
         if(nivel == 0 ){
             System.out.println("No se puede realizar la acción ya que se eliminaría el árbol");
         }else if(arbol.podarArbol(nivel)){// Se podo el arbol        
@@ -140,7 +128,7 @@ public class TestNario {
         ArrayList<ArrayList<Comparable>> datos;
         datos = arbol.ramas();
     
-        imprimirListaDoble(datos, "   Bitch\n ");
+        imprimirListaDoble(datos,true, "\n ");
         System.out.println("\n-----------------------------------------------------");
     }
 
@@ -175,9 +163,12 @@ public class TestNario {
             System.out.print(lista.get(i )+ " ");
         }    
     }
-     private void imprimirListaDoble(ArrayList<ArrayList<Comparable>> listadoble,String end){
+     private void imprimirListaDoble(ArrayList<ArrayList<Comparable>> listadoble,boolean enumerar,String end){
         int size = listadoble.size();
         for(int i =0; i<size;i++){
+            if(enumerar){
+                System.out.print((i+1)+". ");
+            }
             imprimirLista(listadoble.get(i));
             System.out.print(end);
         }

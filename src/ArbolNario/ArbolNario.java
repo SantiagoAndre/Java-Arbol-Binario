@@ -20,8 +20,9 @@ public class ArbolNario{
        }
    }
    public ArrayList<Comparable> obtenerElementosDeUnNivel(int nivel){
-       ArrayList<Comparable> datos = new ArrayList<>();
+       ArrayList<Comparable> datos = null;
        if(raiz != null){
+           datos = new ArrayList<>();
            raiz.obtenerElementosDeUnNivel(nivel,0,datos);
        }
        return datos;

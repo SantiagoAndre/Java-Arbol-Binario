@@ -50,7 +50,6 @@ public class Nodo {
     public boolean esInterior(){
         return numeroHijos()>0;
     }
-
     public Nodo buscarNodo(Comparable dato){
         // Obtiene el nodo que alberga un dato
         if(dato.equals(this.info())){//1.  EL dato buscado el el de el nodo actual
@@ -103,8 +102,11 @@ public class Nodo {
          */
     
         String space = "\t";//tab
-        String cadena = new String(new char[profundidad]).replace("\0", space)+ info().toString() + "\n";
-
+        String cadena ="";
+        for(int i = 0 ;i <profundidad;i++){
+            cadena += "\t";
+        }
+        cadena += info().toString() + "\n";   
         for(Nodo hijo: hijos){
             cadena = cadena + hijo.toString(profundidad+1);
         }
@@ -196,62 +198,4 @@ public class Nodo {
         }
         
     }
-    /*
-    A
-       E
-            B
-            F
-                M
-                N
-            H
-        L
-        T
-            W
-                Y
-                X
-    public int profundidad() {
-        if(esHoja())
-            return 1;
-        int profIzq = 0, profDer = 0;
-        if(existeIzq())
-            profIzq = getIzq().profundidad();
-        if(existeDer())
-            profDer = getDer().profundidad();
-        return max(profIzq,profDer);
-        
-    }    
-        
-    public Nodo nodoMasIzq(){
-        if(!existeIzq())
-            return this;
-        return getIzq().nodoMasIzq();
-    }    
-        public Nodo nodoMasDer(){
-        if(!existeDer())
-            return this;
-        return getDer().nodoMasDer();
-    }    
-    public void inorden(ArrayList<Comparable> datos,Nodo nodo){
-        if(nodo == null)
-            return;
-        datos.add(nodo.info());
-        inorden(datos,nodo.getIzq());
-        inorden(datos,nodo.getDer());
-    }
-    public void preorden(ArrayList<Comparable> datos,Nodo nodo){
-        if(nodo == null)
-            return;
-        preorden(datos,nodo.getIzq());
-        datos.add(nodo.info());
-        preorden(datos,nodo.getDer());
-    } 
-    public void posorden(ArrayList<Comparable> datos,Nodo nodo){
-        if(nodo == null)
-            return;
-        posorden(datos,nodo.getIzq());
-        posorden(datos,nodo.getDer());
-        datos.add(nodo.info());
-    }
-
-*/
 }
